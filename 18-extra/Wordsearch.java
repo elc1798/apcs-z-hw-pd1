@@ -115,6 +115,12 @@ public class Wordsearch{
 		this.fillWithRandomChar();
 		outFile("WORDSEARCH.puzzle");
 		System.out.println("Answer key saved as WORDSEARCH.key \nPuzzle saved as WORDSEARCH.puzzle");
+		try {
+			Runtime.getRuntime().exec("gedit WORDSEARCH.key");
+			Runtime.getRuntime().exec("gedit WORDSEARCH.puzzle");
+		} catch(Exception e){
+			System.out.println("gedit is not installed on this machine and the files cannot be automatically opened");
+		}
 	}
 
 	public boolean insertWord(int row, int column, String word , int direction){
