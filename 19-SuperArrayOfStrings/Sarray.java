@@ -1,6 +1,12 @@
+import java.util.*;
+import java.io.*;
+
 public class Sarray {
-    	String[] data;	// Data Set, larger array
-    	int last; 	// Actual current length, not the data set
+
+	/*	Modified from HW 15 to use an array of Strings		*/
+
+    	private String[] data;	// Data Set, larger array
+    	private int last; 	// Actual current length, not the data set
 
     	public Sarray() {
         	// set up the initial instance variables
@@ -8,19 +14,12 @@ public class Sarray {
 		data = new String[16];
 		// Set default value to 0
 		for (int i = 0; i < data.length; i++){
-			data[i] = 0;
+			data[i] = null;
 		}
 		last = 0;
     	}
 
-	public int find(String str){
-		for (int i = 0; i < last; i++){
-			if (data[i].equals(str)){return i;}
-		}
-		return -1;
-	}
-
-    	public boolean add(int i){
+    	public boolean add(String str){
         	// adds an item to the end of the list, grow if needed
         	// returns true
 		try {
@@ -29,12 +28,12 @@ public class Sarray {
 				for (int i = 0; i < data.length; i++){
 					buffer[i] = data[i];
 				}
-				buffer[data.length] = i;
+				buffer[data.length] = str;
 				data = buffer;
 				last++;
 			}
 			else {
-				data[last] = i;
+				data[last] = str;
 				last++;
 			}
 			return true;
@@ -44,7 +43,7 @@ public class Sarray {
 		return false;
     	}
 
-    	public void add(int index, int k){
+    	public void add(int index, String k){
         	// adds item i  at index, shifting everything down as needed.
         	// also grows as needed
 		if (last < index) {last = index - 1;} //Grow!
@@ -54,7 +53,7 @@ public class Sarray {
 				if (i < index){
 					buffer[i] = data[i];
 				}
-				else if (i == indek){
+				else if (i == index){
 					buffer[i] = k;
 				}
 				else {
@@ -72,31 +71,31 @@ public class Sarray {
 		return last;
     	}
 
-    	public int get(int index) {
+    	public String get(int index) {
         	// returns the item at location index of the lsit
         	try{
 	        	return data[index];
 	        } catch(Exception e){System.out.println("Out of bounds.");}
-	        return -1;
+	        return null;
     	}
 
-    	public int set(int index, int i){
+    	public String set(int index, String str){
         	// sets the item at location index to value i
         	// returns the old value.
         	try{
         		String buffer = data[index];
-        		data[index] = i;
+        		data[index] = str;
         		return buffer;
         	} catch(Exception e){System.out.println("Out of bounds.");}
-        	return -1;
+        	return null;
         	
     	}
 
-    	public int remove(int index){
+    	public String remove(int index){
         	// removes the item at index i
         	// returns the old value
-		int[] buffer = new Object[size() - 1];
-		String toReturn;
+		String[] buffer = new String[size() - 1];
+		String toReturn = null;
 		for (int i = 0; i < buffer.length; i++){
 			if (i < index){
                         	buffer[i] = data[i];
