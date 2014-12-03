@@ -72,12 +72,10 @@ public class OrderedSuperArray extends Sarray{
 
 	public void sort(){
 		//Sorts data, just like Arrays.sort(data)
-		for (int i = 1; i < last; i++){
-			if (data[i].compareTo(data[i - 1]) < 0){
-				String temp = data[i - 1];
-				data[i - 1] = data[i];
-				data[i] = temp;
-			}
+		String sortee = data[last];
+		for (int i = last; i > 0 && sortee.compareTo(data[i - 1] < 0; i --){
+			a[i] = a[i - 1];
+			a[i] = sortee
 		}
 	}
 
