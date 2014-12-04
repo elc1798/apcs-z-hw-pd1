@@ -10,7 +10,7 @@ public class Exec{
 		test.add("chocolate");
 		test.add("milk");
 		test.print();
-		test.isort();
+		test.bsort();
 		test.print();
 	}
 }

@@ -66,10 +66,14 @@ public class SuperArray {
 
     	}
 
-	public void isort(){
-		for (int i = 0; i < last; i++){
-			String insertee = data[i];
-			
+	public void isort() {
+		for (int i = 1; i < last; i++){
+			String temp = data[i];
+			int j = 0;
+			for (j = i; j > 0 && data[j - 1].compareTo(temp) > 0; j--){
+				data[j] = data[j - 1];
+			}
+			data[j] = temp;
 		}
 	}
 
@@ -87,6 +91,19 @@ public class SuperArray {
 			tmp = data[i];
 			data[i] = data[loc];
 			data[loc] = tmp;
+		}
+	}
+
+	public void bsort(){
+		String temp = "";
+		for (int i = 0; i < last - 1; i++){
+			for (int j = i; j < last - 1; j++){
+				if (temp.compareTo(data[j]) < 0){
+					temp = data[j + 1];
+					data[j + 1] = data[j];
+					data[j] = temp;
+				}
+			}
 		}
 	}
 
