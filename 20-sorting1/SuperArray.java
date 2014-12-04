@@ -1,12 +1,14 @@
 import java.util.*;
 import java.io.*;
 
-public class OrderedSuperArray extends SuperArray{
+public class SuperArray {
+
+	/*	Modified from HW 15 to use an array of Strings		*/
 
     	private String[] data;	// Data Set, larger array
     	private int last; 	// Actual current length, not the data set
 
-    	public OrderedSuperArray() {
+    	public SuperArray() {
         	// set up the initial instance variables
 		// CREATE 16 BIT ALLOCATION
 		data = new String[16];
@@ -34,7 +36,6 @@ public class OrderedSuperArray extends SuperArray{
 				data[last] = str;
 				last++;
 			}
-			isort();
 			return true;
 		} catch(Exception e){
 			e.printStackTrace();
@@ -65,19 +66,34 @@ public class OrderedSuperArray extends SuperArray{
 
     	}
 
+	public void isort(){
+		for (int i = 0; i < last; i++){
+			String insertee = data[i];
+			
+		}
+	}
+
+	public void ssort(){
+		for (int i = 0; i < last; i++){
+			String currMin = data[i];
+			String tmp = "";
+			int loc = 0;
+			for (int j = i; j < last; j++){
+				if (data[j].compareTo(currMin) <= 0){
+					loc = j;
+					currMin = data[j];
+				}
+			}
+			tmp = data[i];
+			data[i] = data[loc];
+			data[loc] = tmp;
+		}
+	}
+
     	public int size() {
         	// returns the number of items in the list (not the array size)
 		return last;
     	}
-
-	public void isort(){
-		//Sorts data, just like Arrays.sort(data)
-		String sortee = data[last];
-		for (int i = last; i > 0 && sortee.compareTo(data[i - 1]) < 0; i --){
-			data[i] = data[i - 1];
-			data[i] = sortee;
-		}
-	}
 
     	public String get(int index) {
         	// returns the item at location index of the lsit
@@ -87,17 +103,16 @@ public class OrderedSuperArray extends SuperArray{
 	        return null;
     	}
 
-    	public String set(int index, String i){
+    	public String set(int index, String str){
         	// sets the item at location index to value i
         	// returns the old value.
         	try{
         		String buffer = data[index];
-        		data[index] = i;
-			//Arrays.sort(data);
-			isort();
+        		data[index] = str;
         		return buffer;
         	} catch(Exception e){System.out.println("Out of bounds.");}
         	return null;
+        	
     	}
 
     	public String remove(int index){
@@ -133,5 +148,4 @@ public class OrderedSuperArray extends SuperArray{
 		}
 		System.out.println("]");
 	}
-
 }
