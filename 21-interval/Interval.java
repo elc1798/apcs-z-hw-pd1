@@ -45,7 +45,7 @@ public class Interval{
 	}
 
 	public static Interval union(Interval a , Interval b){
-		if (overlab(a , b)){
+		if (overlap(a , b)){
 			double hi = Math.max(a.getHigh() , b.getHigh());
 			double lo = Math.min(a.getLow() , b.getLow());
 			return new Interval(lo , hi);
@@ -64,8 +64,19 @@ public class Interval{
 		}
 	}
 
-	public int compareTo(interval b){
-
+	public int compareTo(Interval b){
+		int diffLow = (int)(this.getLow() - b.getLow());
+		int diffHigh = (int)(this.getHigh() - b.getHigh());
+		int diffRange = (int)((this.getHigh() - this.getLow()) - (b.getHigh() - b.getLow()));
+		if (diffLow == 0) {
+			return diffHigh;
+		} else {
+			if (diffRange == 0) {
+				return diffLow;
+			} else {
+				return diffRange;
+			}
+		}
 	}
 
 	public static int compareTo(Interval a , Interval b){
