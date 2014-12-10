@@ -1,4 +1,4 @@
-public class Mob{
+public class Mob implements Comparable{
 	public int health;
 	public String name;
 	public int dexterity; //Damage redux
@@ -23,4 +23,8 @@ public class Mob{
 
 	}
 */
+	public int compareTo(Object obj){
+		Mob them = (Mob)obj;
+		return (this.level * 100 + this.experience) - (them.level * 100 + them.experience);
+	}
 }
