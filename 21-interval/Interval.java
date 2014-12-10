@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Interval{
+public class Interval implements Comparable {
 	private double low, high;
 	private Random numgen = new Random();
 
@@ -64,7 +64,8 @@ public class Interval{
 		}
 	}
 
-	public int compareTo(Interval b){
+	public int compareTo(Object obj){
+		Interval b = (Interval)obj;
 		int diffLow = (int)(this.getLow() - b.getLow());
 		int diffHigh = (int)(this.getHigh() - b.getHigh());
 		int diffRange = (int)((this.getHigh() - this.getLow()) - (b.getHigh() - b.getLow()));

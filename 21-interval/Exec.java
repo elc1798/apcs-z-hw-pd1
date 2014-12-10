@@ -27,5 +27,8 @@ public class Exec{
 		System.out.println(test2.compareTo(test1));					//Should be something positive
 		System.out.println(test4.compareTo(test3));					//Should be something positive
 		System.out.println(test1.compareTo(test1));					//Should be 0
+
+		Arrays.sort(collections);
+		System.out.println(Arrays.toString(collections));
 	}
 }
