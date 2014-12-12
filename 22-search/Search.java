@@ -34,18 +34,32 @@ public class Search {
 	}
 
 	private static Object rbs(Comparable[] c , Comparable t , int upper , int lower){
-		int i = lower + (int)((upper - lower) / 2);
-		if (t.compareTo(c[i]) > 0){
-			return rbs(c , t , upper , i);
-		} else if (t.compareTo(c[i]) < 0){
-			return rbs(c , t , i , lower);
-		} else {
-			return c[i];
+		if (upper - lower <= 1){
+			try {
+				if (t.compareTo(c[lower]) == 0){
+					return (Object)c[lower];
+				} else {
+					return null;
+				}
+			} catch(Exception e){
+				return null;
+			}
 		}
+		int i = lower + (int)((upper - lower) / 2);
+		Object obj;
+		if (t.compareTo(c[i]) > 0){
+			obj = rbs(c , t , upper , i);
+		} else if (t.compareTo(c[i]) < 0){
+			obj = rbs(c , t , i , lower);
+		} else {
+			obj = c[i];
+		}
+		return obj;
 	}
 
 	public static Object recursiveBinarySearch(Comparable[] c , Comparable t){
 		Arrays.sort(c);
-		return rbs(c , t , c.length - 1 , 0);
+		Object obj = rbs(c , t , c.length - 1 , 0);
+		return obj;
 	}
 }
